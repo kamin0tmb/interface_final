@@ -12,7 +12,7 @@ namespace interface_final
             {
                 try
                 {
-                    Console.Write("Введите первое число:");
+                    Console.Write("Введите первое число: ");
                     var x = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Введите второе число: ");
                     var y = Convert.ToInt32(Console.ReadLine());
