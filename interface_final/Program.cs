@@ -6,7 +6,8 @@ namespace interface_final
     {
         static void Main(string[] args)
         {
-            Summ calculate = new Summ();
+            Log log = new Log();
+            Summ calculate = new Summ(log);
             while (true)
             {
                 try
@@ -17,9 +18,9 @@ namespace interface_final
                     var y = Convert.ToInt32(Console.ReadLine());
                     calculate.Summa(x, y);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Должно быть введено число");
+                    log.Error(ex.Message);
                 }
             }
         }
@@ -28,5 +29,24 @@ namespace interface_final
     {
         void Summa(int x, int y);
     }
-
+    public interface ILog
+    {
+        void Event(string mess);
+        void Error(string mess);
+    }
+    public class Log : ILog
+    {
+        public void Error(string mess)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(mess);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        public void Event(string mess)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Произошла ошибка: {0}", mess);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+    }
 }
